@@ -20,17 +20,14 @@
     @endif
       <form method="post" action="{{ route('usuaris.store') }}">
           <div class="form-group">
-              @csrf
               <label for="nom">Nom</label>
               <input type="text" class="form-control" name="nom"/>
           </div>
           <div class="form-group">
-              @csrf
               <label for="cognoms">Cognoms</label>
               <input type="text" class="form-control" name="cognoms"/>
           </div>
           <div class="form-group">
-              @csrf
               <label for="password">Contrasenya</label>
               <input type="password" class="form-control" name="password"/>
           </div>

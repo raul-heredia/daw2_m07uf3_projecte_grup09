@@ -15,7 +15,7 @@ class ControladorUsuari extends Controller
     public function index()
     {
         $usuari = Usuari::all();
-        return view('llista', compact('usuari'));
+        return view('usuaris/llista', compact('usuari'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ControladorUsuari extends Controller
      */
     public function create()
     {
-        return view('welcome');
+        return view('usuaris/crear');
     }
 
     /**
@@ -66,7 +66,7 @@ class ControladorUsuari extends Controller
     public function edit($email)
     {
         $usuari = Usuari::findOrFail($email);
-        return view('actualitza', compact('usuari'));
+        return view('usuaris/actualitza', compact('usuari'));
     }
 
     /**

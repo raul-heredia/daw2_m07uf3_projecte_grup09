@@ -43,6 +43,7 @@
                         <option value="0" name="0" >No</option>
                       </select>
                 </div>
+                <br />
             <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
         </form>
     </div>

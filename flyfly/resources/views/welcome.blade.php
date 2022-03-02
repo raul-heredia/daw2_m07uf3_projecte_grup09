@@ -20,6 +20,7 @@
     @endif
       <form method="post" action="{{ route('usuaris.store') }}">
           <div class="form-group">
+              @csrf
               <label for="nom">Nom</label>
               <input type="text" class="form-control" name="nom"/>
           </div>
@@ -36,16 +37,12 @@
               <input type="email" class="form-control" name="email"/>
           </div>
           <div class="form-group">
-              <label for="isCapDepartament">Cap Departament</label>
-              <input type="text" class="form-control" name="isCapDepartament"/>
-          </div>
-          <div class="form-group">
-              <label for="horaEntrada">horaEntrada</label>
-              <input type="text" class="form-control" name="horaEntrada"/>
-          </div>
-          <div class="form-group">
-              <label for="horaSortida">horaSortida</label>
-              <input type="text" class="form-control" name="horaSortida "/>
+          <label for="isCapDepartament">Cap de departament</label>
+                    <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
+                        <option selected disabled>Selecciona una opció</option>
+                        <option value="1" name="1" >Sí</option>
+                        <option value="0" name="0" >No</option>
+                      </select>
           </div>
           <button type="submit" class="btn btn-block btn-primary">Envia</button>
       </form>

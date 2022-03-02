@@ -15,7 +15,7 @@ class ControladorUsuari extends Controller
     public function index()
     {
         $usuari = Usuari::all();
-        return view('index', compact('usuari'));
+        return view('llista', compact('usuari'));
     }
 
     /**
@@ -42,8 +42,6 @@ class ControladorUsuari extends Controller
             'email' => 'required|max:255',
             'password' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
-            'horaEntrada' => 'required|max:255',
-            'horaSortida' => 'required|max:255',
         ]);
         $usuari = Usuari::create($nouUsuari);
         return redirect('/usuaris')->with('completed', 'Usuari creat!');
@@ -65,9 +63,9 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($email)
     {
-        $usuari = Usuari::findOrFail($id);
+        $usuari = Usuari::findOrFail($email);
         return view('actualitza', compact('usuari'));
     }
 
@@ -78,7 +76,7 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $email)
     {
         $dades = $request->validate([
             'nom' => 'required|max:255',
@@ -86,10 +84,8 @@ class ControladorUsuari extends Controller
             'email' => 'required|max:255',
             'password' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
-            'horaEntrada' => 'required|max:255',
-            'horaSortida' => 'required|max:255',
         ]);
-        Usuari::whereId($id)->update($dades);
+        Usuari::where('email', $email)->update($dades);
         return redirect('/usuaris')->with('completed', 'Usuari actualitzat');
     }
 
@@ -99,9 +95,9 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($email)
     {
-        $usuari = Usuari::findOrFail($id);
+        $usuari = Usuari::findOrFail($email);
         $usuari->delete();
         return redirect('/usuaris')->with('completed', 'Usuari esborrat');
     }

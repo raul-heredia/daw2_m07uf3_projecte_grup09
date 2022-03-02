@@ -1,8 +1,6 @@
 @extends('disseny')
 
 @section('content')
-
-
 <div class="card mt-5">
     <div class="card-header">
         Actualització de dades
@@ -18,22 +16,33 @@
             </ul>
         </div>
         @endif
-        <form method="post" action="{{ route('usuaris.update', $empleat->id) }}">
-            <div class="form-group">
-                @csrf
-                @method('PATCH')
-                <label for="nom">Nom</label>
-                <input type="text" class="form-control" name="nom" value="{{ $empleat->nom }}" />
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" name="email" value="{{ $empleat->email }}" />
-            </div>
-            <div class="form-group">
-                <label for="telefon">Telèfon</label>
-                <input type="text" class="form-control" name="telefon" value="{{ $empleat->telefon }}" />
-            </div>
-
+            <form method="post" action="{{ route('usuaris.update', $usuari->email) }}">
+                <div class="form-group">
+                    @csrf
+                    @method('PATCH')
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" value="{{ $usuari->nom }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="cognoms">Cognoms</label>
+                    <input type="text" class="form-control" name="cognoms" value="{{ $usuari->cognoms }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contrasenya</label>
+                    <input type="password" class="form-control" name="password"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{ $usuari->email }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="isCapDepartament">Cap de departament</label>
+                    <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
+                        <option selected disabled>Selecciona una opció</option>
+                        <option value="1" name="1" >Sí</option>
+                        <option value="0" name="0" >No</option>
+                      </select>
+                </div>
             <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
         </form>
     </div>

@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('isCapDepartament');
-            $table->date('horaEntrada');
-            $table->date('horaSortida');
+            $table->timestamp('horaEntrada', $precision = 0)->nullable();
+            $table->timestamp('horaSortida', $precision = 0)->nullable();
             $table->timestamps();
             $table->primary('email');
         });

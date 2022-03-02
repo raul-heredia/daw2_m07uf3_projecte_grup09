@@ -2,6 +2,12 @@
 
 @section('content')
 
+<head>
+  <meta charset="utf-8">
+  
+</head>
+
+
 <h1>Llista d'usuaris</h1>
 <div class="mt-5">
   @if(session()->get('success'))
@@ -11,13 +17,14 @@
   @endif
   <table class="table">
     <thead>
-        <tr class="table-primary">
+        <tr class="table-dark">
           <td>Nom</td>
           <td>Cognoms</td>
           <td>Email</td>
           <td>Cap de Departament</td>
           <td>Hora entrada</td>
           <td>Hora sortida</td>
+          <td></td>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +33,13 @@
             <td>{{$usr->nom}}</td>
             <td>{{$usr->cognoms}}</td>
             <td>{{$usr->email}}</td>
-            <td>{{$usr->isCapDepartament}}</td>
+            <td>
+              @if($usr->isCapDepartament == 1)         
+              <i class="bi bi-check-lg"></i>  
+              @else    
+              <i class="bi bi-x-lg"></i>
+              @endif
+            </td>
             <td>{{$usr->horaEntrada}}</td>
             <td>{{$usr->horaSortida}}</td>
             <td class="text-left">
@@ -43,4 +56,8 @@
   </table>
 <div>
 <br><a href="{{ url('usuaris/create') }}">Accés directe a la vista de creació d'usuaris</a>
+
+
+{{-- Bootstrap JS --}}
+
 @endsection

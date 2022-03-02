@@ -9,13 +9,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
         <!-- Styles -->
         <style>
             /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+            html,
+            body {
+                margin: 0;
+                height: 100%;
+                overflow: hidden
+            }
+
             html {
                 line-height: 1.15;
                 -webkit-text-size-adjust: 100%
@@ -63,20 +66,17 @@
 
             .bg-white {
                 --bg-opacity: 1;
-                background-color: #fff;
-                background-color: rgba(255, 255, 255, var(--bg-opacity))
+                background-color: white;
             }
 
             .bg-gray-100 {
                 --bg-opacity: 1;
-                background-color: #fff;
-                background-color: rgba(247, 250, 252, var(--bg-opacity))
+                background-color: white;
             }
 
             .border-gray-200 {
                 --border-opacity: 1;
-                border-color: #fff;
-                border-color: rgba(237, 242, 247, var(--border-opacity))
+                border-color: white;
             }
 
             .border-t {

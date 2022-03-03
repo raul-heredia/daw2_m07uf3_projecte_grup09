@@ -82,7 +82,6 @@ class ControladorUsuari extends Controller
             'nom' => 'required|max:255',
             'cognoms' => 'required|max:255',
             'email' => 'required|max:255',
-            'password' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
         ]);
         Usuari::where('email', $email)->update($dades);

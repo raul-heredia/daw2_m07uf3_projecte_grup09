@@ -17,6 +17,8 @@ class Usuari extends Authenticatable
      */
     protected $primaryKey = 'email'; // Para que pille la columna email como primary key
     public $incrementing = false; // Para que no devuelva 0 en el email
+    public $timestamps = false; // Per a que no intenti modificar la data de creacio ni modificacio
+
     protected $fillable = [
         'nom',
         'cognoms',

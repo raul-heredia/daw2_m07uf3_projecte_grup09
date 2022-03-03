@@ -16,6 +16,10 @@
             font-family: 'Nunito', sans-serif;
         }
 
+        nav {
+            margin-bottom: 5px;
+        }
+
         .navbar-brand {
             margin-left: 5px;
         }

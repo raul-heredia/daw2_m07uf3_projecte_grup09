@@ -17,3 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('usuaris', ControladorUsuari::class);
+Route::resource('clients', ControladorClient::class);

@@ -16,32 +16,31 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('usuaris.update', $usuari->email) }}">
+            <form method="post" action="{{ route('usuaris.update', $client->email) }}">
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
                     <label for="nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" value="{{ $usuari->nom }}" />
+                    <input type="text" class="form-control" name="nom" value="{{ $client->nom }}" />
                 </div>
                 <div class="form-group">
                     <label for="cognoms">Cognoms</label>
-                    <input type="text" class="form-control" name="cognoms" value="{{ $usuari->cognoms }}" />
+                    <input type="text" class="form-control" name="cognoms" value="{{ $client->cognoms }}" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Contrasenya</label>
+                    <input type="password" class="form-control" name="password" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" value="{{ $usuari->email }}" />
+                    <input type="email" class="form-control" name="email" value="{{ $client->email }}" />
                 </div>
                 <div class="form-group">
                     <label for="isCapDepartament">Cap de departament</label>
                     <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
                         <option selected disabled>Selecciona una opció</option>
-                        @if ($usuari->isCapDepartament == 1)
-                            <option selected value="1" name="1">Sí</option>
-                            <option value="0" name="0">No</option>
-                        @else
-                            <option value="1" name="1">Sí</option>
-                            <option selected value="0" name="0">No</option>
-                        @endif
+                        <option value="1" name="1">Sí</option>
+                        <option value="0" name="0">No</option>
                     </select>
                 </div>
                 <br />

@@ -16,11 +16,16 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('usuaris.update', $client->email) }}">
+            <form method="post" action="{{ route('clients.update', $client->email) }}">
+                @csrf
+                @method('PATCH')
                 <div class="form-group">
-                    @csrf
-                    @method('PATCH')
-                    <label for="nom">Nom</label>
+                    <label for="passaportClient">Passaport Client</label>
+                    <input type="text" class="form-control" name="passaportClient"
+                        value="{{ $client->passaportClient }}" />
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom del Client</label>
                     <input type="text" class="form-control" name="nom" value="{{ $client->nom }}" />
                 </div>
                 <div class="form-group">
@@ -28,24 +33,50 @@
                     <input type="text" class="form-control" name="cognoms" value="{{ $client->cognoms }}" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Contrasenya</label>
-                    <input type="password" class="form-control" name="password" />
+                    <label for="edat">Data Naixement</label>
+                    <input type="date" class="form-control" name="edat" value="{{ $client->edat }}" />
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="telefon">Telèfon</label>
+                    <input type="number" class="form-control" name="telefon" value="{{ $client->telefon }}" />
+                </div>
+                <div class="form-group">
+                    <label for="direccio">Direcció</label>
+                    <input type="text" class="form-control" name="direccio" value="{{ $client->direccio }}" />
+                </div>
+                <div class="form-group">
+                    <label for="ciutat">Ciutat</label>
+                    <input type="text" class="form-control" name="ciutat" value="{{ $client->ciutat }}" />
+                </div>
+                <div class="form-group">
+                    <label for="pais">País</label>
+                    <input type="text" class="form-control" name="pais" value="{{ $client->pais }}" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Correu Electrònic</label>
                     <input type="email" class="form-control" name="email" value="{{ $client->email }}" />
                 </div>
                 <div class="form-group">
-                    <label for="isCapDepartament">Cap de departament</label>
-                    <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
+                    <label for="tipusTarjeta">Tipus de Tarjeta</label>
+                    <select class="form-select" name="tipusTarjeta" aria-label="Tipus de Tarjeta">
                         <option selected disabled>Selecciona una opció</option>
-                        <option value="1" name="1">Sí</option>
-                        <option value="0" name="0">No</option>
+                        @if ($client->tipusTarjeta == 'Dèbit')
+                            <option selected value="Dèbit">Dèbit</option>
+                            <option value="Crèdit">Crèdit</option>
+                        @else
+                            <option value="Dèbit">Dèbit</option>
+                            <option selected value="Crèdit">Crèdit</option>
+                        @endif
                     </select>
                 </div>
-                <br />
-                <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
-            </form>
+                <div class="form-group">
+                    <label for="numTarjeta">Nº Tarjeta</label>
+                    <input type="number" class="form-control" name="numTarjeta" value="{{ $client->numTarjeta }}" />
+                </div>
         </div>
+        <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
+        </form>
+        <a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a>
     </div>
-<br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a @endsection
+    </div>
+@endsection

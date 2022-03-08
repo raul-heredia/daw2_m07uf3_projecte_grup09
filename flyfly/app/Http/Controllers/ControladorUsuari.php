@@ -43,6 +43,7 @@ class ControladorUsuari extends Controller
             'password' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
         ]);
+        $nouUsuari["password"] = password_hash($nouUsuari["password"], PASSWORD_DEFAULT);
         $usuari = Usuari::create($nouUsuari);
         return redirect('/usuaris')->with('completed', 'Usuari creat!');
     }

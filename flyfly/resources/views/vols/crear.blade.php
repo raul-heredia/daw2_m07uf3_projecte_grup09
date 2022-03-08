@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <h1>Aplicació d'administració d'usuaris</h1>
+    <h1>Aplicació un nou Vol</h1>
     <div class="card mt-5">
         <div class="card-header">
-            Formulari de creació d'Empleats
+            Formulari de creació de Vols
         </div>
 
         <div class="card-body">
@@ -18,36 +18,53 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('usuaris.store') }}">
+            <form method="post" action="{{ route('vols.store') }}">
                 <div class="form-group">
                     @csrf
-                    <label for="nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" />
+                    <label for="codiVol">Codi Vol</label>
+                    <input type="text" class="form-control" name="codiVol" />
                 </div>
                 <div class="form-group">
-                    <label for="cognoms">Cognoms</label>
-                    <input type="text" class="form-control" name="cognoms" />
+                    <label for="codiAvio">Codi Avió</label>
+                    <input type="text" class="form-control" name="codiAvio" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Contrasenya</label>
-                    <input type="password" class="form-control" name="password" />
+                    <label for="ciutatOrigen">Ciutat d'origen</label>
+                    <input type="text" class="form-control" name="ciutatOrigen" />
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" />
+                    <label for="ciutatDestinacio">Ciutat de destinació</label>
+                    <input type="text" class="form-control" name="ciutatDestinacio" />
                 </div>
                 <div class="form-group">
-                    <label for="isCapDepartament">Cap de departament</label>
-                    <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
+                    <label for="terminalOrigen">Terminal d'origen</label>
+                    <input type="text" class="form-control" name="terminalOrigen" />
+                </div>
+                <div class="form-group">
+                    <label for="terminalDestinacio">Terminal de destinació</label>
+                    <input type="text" class="form-control" name="terminalDestinacio" />
+                </div>
+                <div class="form-group">
+                    <label for="dataSortida">Data sortida</label>
+                    <input type="text" class="form-control" name="dataSortida" />
+                </div>
+                <div class="form-group">
+                    <label for="dataArribada">Data arribada</label>
+                    <input type="text" class="form-control" name="dataArribada" />
+                </div>
+                <div class="form-group">
+                    <label for="classe">Classe</label>
+                    <select class="form-select" name="classe" aria-label="A quina classe vitja">
                         <option selected disabled>Selecciona una opció</option>
-                        <option value="1" name="1">Sí</option>
-                        <option value="0" name="0">No</option>
+                        <option value="1" name="1">Turista</option>
+                        <option value="0" name="0">Bussiness</option>
+                        <option value="2" name="2">Primera</option>
                     </select>
                 </div>
         </div>
         <button type="submit" class="btn btn-block btn-primary">Envia</button>
         </form>
     </div>
-    <br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a>
+    <br><a href="{{ url('vols') }}">Accés directe a la Llista de vols</a>
     </div>
 @endsection

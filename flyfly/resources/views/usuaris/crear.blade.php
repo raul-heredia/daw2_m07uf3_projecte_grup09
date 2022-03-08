@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Aplicació d'administració d'usuaris</h1>
+    <h1>Afegir un nou Empleat</h1>
     <div class="card mt-5">
         <div class="card-header">
             Formulari de creació d'Empleats
@@ -30,7 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Contrasenya</label>
-                    <input type="password" class="form-control" name="password" />
+                    <input type="password" class="form-control" name="password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-?]).{8,}$" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>

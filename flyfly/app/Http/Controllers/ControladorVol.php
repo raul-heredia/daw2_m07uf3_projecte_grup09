@@ -70,7 +70,7 @@ class ControladorVol extends Controller
      */
     public function edit($id)
     {
-        $usuavolri = Vol::findOrFail($id);
+        $vol = Vol::findOrFail($id);
         return view('vols/actualitza', compact('vol'));
     }
 

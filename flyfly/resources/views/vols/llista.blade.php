@@ -25,6 +25,7 @@
                     <td>Data Sortida</td>
                     <td>Data Arribada</td>
                     <td>Classe</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>

@@ -70,8 +70,8 @@ class ControladorVol extends Controller
      */
     public function edit($id)
     {
-        //$usuavolri = Vol::findOrFail($email);
-        return view('vols/actualitza', compact('usuari'));
+        $usuavolri = Vol::findOrFail($id);
+        return view('vols/actualitza', compact('vol'));
     }
 
     /**
@@ -83,7 +83,19 @@ class ControladorVol extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dades = $request->validate([
+            'codiVol' => 'required|max:6',
+            'codiAvio' => 'required|max:255',
+            'ciutatOrigen' => 'required|max:255',
+            'ciutatDestinacio' => 'required|max:255',
+            'terminalOrigen' => 'required|max:255',
+            'terminalDestinacio' => 'required|max:255',
+            'dataSortida' => 'required|max:255',
+            'dataArribada' => 'required|max:255',
+            'classe' => 'required|max:255',
+        ]);
+        Vol::where('codiVol', $id)->update($dades);
+        return redirect('/vols')->with('completed', 'Vol actualitzat');
     }
 
     /**
@@ -94,6 +106,8 @@ class ControladorVol extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vol = Vol::findOrFail($id);
+        $vol->delete();
+        return redirect('/vols')->with('completed', 'Vol esborrat');
     }
 }

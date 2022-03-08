@@ -63,9 +63,9 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($email)
+    public function edit($id)
     {
-        $usuari = Usuari::findOrFail($email);
+        $usuari = Usuari::findOrFail($id);
         return view('usuaris/actualitza', compact('usuari'));
     }
 
@@ -76,7 +76,7 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $email)
+    public function update(Request $request, $id)
     {
         $dades = $request->validate([
             'nom' => 'required|max:255',
@@ -84,7 +84,7 @@ class ControladorUsuari extends Controller
             'email' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
         ]);
-        Usuari::where('email', $email)->update($dades);
+        Usuari::where('email', $id)->update($dades);
         return redirect('/usuaris')->with('completed', 'Usuari actualitzat');
     }
 
@@ -94,9 +94,9 @@ class ControladorUsuari extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($email)
+    public function destroy($id)
     {
-        $usuari = Usuari::findOrFail($email);
+        $usuari = Usuari::findOrFail($id);
         $usuari->delete();
         return redirect('/usuaris')->with('completed', 'Usuari esborrat');
     }

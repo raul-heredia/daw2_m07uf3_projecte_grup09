@@ -5,7 +5,7 @@
     <h1>Afegir un nou Client</h1>
     <div class="card mt-5">
         <div class="card-header">
-            Formulari de Clients
+            Formulari de creació de Clients
         </div>
 
         <div class="card-body">

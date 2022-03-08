@@ -1,11 +1,9 @@
 @extends('disseny')
 
 @section('content')
-
-    <h1>Aplicació d'administració d'usuaris</h1>
     <div class="card mt-5">
         <div class="card-header">
-            Formulari de creació d'Empleats
+            Actualització de dades
         </div>
 
         <div class="card-body">
@@ -18,36 +16,37 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('usuaris.store') }}">
+            <form method="post" action="{{ route('usuaris.update', $usuari->email) }}">
                 <div class="form-group">
                     @csrf
+                    @method('PATCH')
                     <label for="nom">Nom</label>
-                    <input type="text" class="form-control" name="nom" />
+                    <input type="text" class="form-control" name="nom" value="{{ $usuari->nom }}" />
                 </div>
                 <div class="form-group">
                     <label for="cognoms">Cognoms</label>
-                    <input type="text" class="form-control" name="cognoms" />
-                </div>
-                <div class="form-group">
-                    <label for="password">Contrasenya</label>
-                    <input type="password" class="form-control" name="password" />
+                    <input type="text" class="form-control" name="cognoms" value="{{ $usuari->cognoms }}" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" />
+                    <input type="email" class="form-control" name="email" value="{{ $usuari->email }}" />
                 </div>
                 <div class="form-group">
                     <label for="isCapDepartament">Cap de departament</label>
                     <select class="form-select" name="isCapDepartament" aria-label="Es Cap Departament?">
                         <option selected disabled>Selecciona una opció</option>
-                        <option value="1" name="1">Sí</option>
-                        <option value="0" name="0">No</option>
+                        @if ($usuari->isCapDepartament == 1)
+                            <option selected value="1" name="1">Sí</option>
+                            <option value="0" name="0">No</option>
+                        @else
+                            <option value="1" name="1">Sí</option>
+                            <option selected value="0" name="0">No</option>
+                        @endif
                     </select>
                 </div>
+                <br />
+                <button type="submit" class="btn btn-block btn-danger">Actualitza</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-block btn-primary">Envia</button>
-        </form>
     </div>
-    <br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a>
-    </div>
-@endsection
+<br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a @endsection

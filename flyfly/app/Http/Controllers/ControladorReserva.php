@@ -98,7 +98,12 @@ class ControladorReserva extends Controller
             'preuVol' => 'required|max:255',
             'tipusChecking' => 'required|max:255',
         ]);
-        //Reserva::where('codiVol', $id)->update($dades);
+        //
+        
+        
+        
+        
+        Reserva::where('codiVol', $id)->update($dades);
         //return redirect('/reservas')->with('completed', 'Reserva actualitzada');
     }
 

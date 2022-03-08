@@ -37,7 +37,7 @@ class ControladorClient extends Controller
     public function store(Request $request)
     {
         $nouClient = $request->validate([
-            'passaportClient' => 'required|max:255',
+            'passaportClient' => 'required|max:9',
             'nom' => 'required|max:255',
             'cognoms' => 'required|max:255',
             'edat' => 'required|max:255',
@@ -47,7 +47,7 @@ class ControladorClient extends Controller
             'pais' => 'required|max:255',
             'email' => 'required|max:255',
             'tipusTarjeta' => 'required|max:255',
-            'numTarjeta' => 'required|max:255',
+            'numTarjeta' => 'required|max:16'
         ]);
         $client = Client::create($nouClient);
         return redirect('/clients')->with('completed', 'Client creat!');
@@ -86,7 +86,7 @@ class ControladorClient extends Controller
     public function update(Request $request, $id)
     {
         $dades = $request->validate([
-            'passaportClient' => 'required|max:255',
+            'passaportClient' => 'required|max:9',
             'nom' => 'required|max:255',
             'cognoms' => 'required|max:255',
             'edat' => 'required|max:255',
@@ -96,7 +96,7 @@ class ControladorClient extends Controller
             'pais' => 'required|max:255',
             'email' => 'required|max:255',
             'tipusTarjeta' => 'required|max:255',
-            'numTarjeta' => 'required|max:255',
+            'numTarjeta' => 'required|max:16'
         ]);
         Client::where('passaportClient', $id)->update($dades);
         return redirect('/clients')->with('completed', 'Client actualitzat');

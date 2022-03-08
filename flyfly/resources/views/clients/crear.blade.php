@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <h1>Afegir un nou client</h1>
+    <h1>Afegir un nou Client</h1>
     <div class="card mt-5">
         <div class="card-header">
-            Afegeix un nou empleat
+            Formulari de Clients
         </div>
 
         <div class="card-body">
@@ -72,6 +72,6 @@
         <button type="submit" class="btn btn-block btn-primary">Envia</button>
         </form>
     </div>
-    </div>
     <br><a href="{{ url('clients') }}">Accés directe a la Llista de Clients</a>
+    </div>
 @endsection

@@ -37,22 +37,24 @@ class ControladorReserva extends Controller
     public function store(Request $request)
     {
         $nouReserva = $request->validate([
-            'passaportClient' => 'required|max:6',
-            'codiVol' => 'required|max:255',
+            'passaportClient' => 'required|max:9',
+            'codiVol' => 'required|max:6',
             'numeroSeient' => 'required|max:255',
             'isEquipatgeMa' => 'required|max:255',
             'isEquipatgeCabinaMenor20' => 'required|max:255',
             'quantitatEquipatgesFacturats' => 'required|max:255',
             'tipusAsseguranca' => 'required|max:255',
             'preuVol' => 'required|max:255',
-            'tipusChecking' => 'required|max:255',
+            'tipusChecking' => 'required|max:255'
         ]);
-        $nouReserva["localitzadorReserva"] = "foo";
 
+        $loc = $request->passaportClient . $request->codiVol;
+        $localitzadorReserva = substr(strtoupper(sha1($loc)), 0, 9);
+        $nouReserva["localitzadorReserva"] = $localitzadorReserva;
         echo var_dump($nouReserva);
 
         $reserva = Reserva::create($nouReserva);
-        return redirect('/nouReservas')->with('completed', 'Reserva creada!');
+        return redirect('/reservas')->with('completed', 'Reserva creada!');
     }
 
     /**
@@ -85,11 +87,12 @@ class ControladorReserva extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $id2)
     {
         $dades = $request->validate([
             'passaportClient' => 'required|max:6',
             'codiVol' => 'required|max:255',
+            'localitzadorReserva' => 'required|max:255',
             'numeroSeient' => 'required|max:255',
             'isEquipatgeMa' => 'required|max:255',
             'isEquipatgeCabinaMenor20' => 'required|max:255',
@@ -99,10 +102,10 @@ class ControladorReserva extends Controller
             'tipusChecking' => 'required|max:255',
         ]);
         //
-        
-        
-        
-        
+
+
+
+
         Reserva::where('codiVol', $id)->update($dades);
         //return redirect('/reservas')->with('completed', 'Reserva actualitzada');
     }

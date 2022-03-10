@@ -19,3 +19,4 @@ Route::get('/', function () {
 Route::resource('usuaris', ControladorUsuari::class);
 Route::resource('clients', ControladorClient::class);
 Route::resource('vols', ControladorVol::class);
+Route::resource('reservas', ControladorReserva::class);

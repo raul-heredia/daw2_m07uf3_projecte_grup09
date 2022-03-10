@@ -16,64 +16,96 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('vols.update', $vol->codiVol) }}">
+            <form method="post" action="{{ route('reservas.update', $reserva->codiVol) }}">
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
+                    <label for="passaportClient">Passaport Client</label>
+                    <input type="text" class="form-control" name="passaportClient"
+                        value="{{ $reserva->passaportClient }}" />
+                </div>
+                <div class="form-group">
                     <label for="codiVol">Codi Vol</label>
-                    <input type="text" class="form-control" name="codiVol" value="{{ $vol->codiVol }}" />
+                    <input type="text" class="form-control" name="codiVol" value="{{ $reserva->codiVol }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="codiAvio">Codi Avió</label>
-                    <input type="text" class="form-control" name="codiAvio" value="{{ $vol->codiAvio }}" />
+                    <label for="numeroSeient">Número de Seient</label>
+                    <input type="number" class="form-control" name="numeroSeient" value="{{ $reserva->numeroSeient }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="ciutatOrigen">Ciutat d'origen</label>
-                    <input type="text" class="form-control" name="ciutatOrigen" value="{{ $vol->ciutatOrigen }}" />
-                </div>
-                <div class="form-group">
-                    <label for="ciutatDestinacio">Ciutat de destinació</label>
-                    <input type="text" class="form-control" name="ciutatDestinacio"
-                        value="{{ $vol->ciutatDestinacio }}" />
-                </div>
-                <div class="form-group">
-                    <label for="terminalOrigen">Terminal d'origen</label>
-                    <input type="text" class="form-control" name="terminalOrigen" value="{{ $vol->terminalOrigen }}" />
-                </div>
-                <div class="form-group">
-                    <label for="terminalDestinacio">Terminal de destinació</label>
-                    <input type="text" class="form-control" name="terminalDestinacio"
-                        value="{{ $vol->terminalDestinacio }}" />
-                </div>
-                <div class="form-group">
-                    <label for="dataSortida">Data sortida</label>
-                    <input type="text" class="form-control" name="dataSortida" value="{{ $vol->dataSortida }}" />
-                </div>
-                <div class="form-group">
-                    <label for="dataArribada">Data arribada</label>
-                    <input type="text" class="form-control" name="dataArribada" value="{{ $vol->dataArribada }}" />
-                </div>
-                <div class="form-group">
-                    <label for="classe">Classe</label>
-                    <select class="form-select" name="classe" aria-label="A quina classe vitja">
+                    <label for="isEquipatgeMa">Equipatge de Mà</label>
+                    <select class="form-select" name="isEquipatgeMa" aria-label="Equipatge de Mà">
                         <option selected disabled>Selecciona una opció</option>
-                        @if ($vol->classe == 'Turista')
-                            <option selected value="Turista">Turista</option>
-                            <option value="Bussiness">Bussiness</option>
-                            <option value="Primera">Primera</option>
-                        @elseif ($vol->classe == 'Bussiness')
-                            <option value="Turista">Turista</option>
-                            <option selected value="Bussiness">Bussiness</option>
-                            <option value="Primera">Primera</option>
-                        @elseif ($vol->classe == 'Primera')
-                            <option value="Turista">Turista</option>
-                            <option value="Bussiness">Bussiness</option>
-                            <option selected value="Primera">Primera</option>
+                        @if ($reserva->isEquipatgeMa == 1)
+                            <option selected value="1">Sí</option>
+                            <option value="0">No</option>
+                        @else
+                            <option value="1">Sí</option>
+                            <option selected value="0">No</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="isEquipatgeCabinaMenor20">Equipatge de Cabina</label>
+                    <select class="form-select" name="isEquipatgeCabinaMenor20" aria-label="isEquipatgeCabinaMenor20">
+                        <option selected disabled>Selecciona una opció</option>
+                        @if ($reserva->isEquipatgeCabinaMenor20 == 1)
+                            <option selected value="1">Sí</option>
+                            <option value="0">No</option>
+                        @else
+                            <option value="1">Sí</option>
+                            <option selected value="0">No</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantitatEquipatgesFacturats">Quantitat Equipatges Facturats</label>
+                    <input type="number" class="form-control" name="quantitatEquipatgesFacturats" value="{{ $reserva->quantitatEquipatgesFacturats }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="tipusAsseguranca">Tipus Assegurança</label>
+                    <select class="form-select" name="tipusAsseguranca" aria-label="tipus Assegurança">
+                        <option selected disabled>Selecciona una opció</option>
+                        @if ($reserva->tipusAsseguranca == 1)
+                            <option selected value="1000">Franquicia fins a 1000€</option>
+                            <option value="500">Franquicia fins a 500</option>
+                            <option value="0">Sense Franquicia</option>
+                        @elseif ($reserva->tipusAsseguranca == 500)
+                            <option value="1000">Franquicia fins a 1000€</option>
+                            <option selected value="500">Franquicia fins a 500</option>
+                            <option value="0">Sense Franquicia</option>
+                        @elseif ($reserva->tipusAsseguranca == 0)
+                            <option value="1000">Franquicia fins a 1000€</option>
+                            <option value="500">Franquicia fins a 500</option>
+                            <option selected value="0">Sense Franquicia</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preuVol">Preu del Vol</label>
+                    <input type="number" class="form-control" name="preuVol" value="{{ $reserva->preuVol }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="tipusChecking">Tipus de Checking</label>
+                    <select class="form-select" name="tipusChecking" aria-label="Tipus de Checking">
+                        <option selected disabled>Selecciona una opció</option>
+                        @if ($reserva->tipusChecking == 'Online')
+                            <option selected value="Online">Online</option>
+                            <option value="Mostrador">Mostrador</option>
+                            <option value="Quiosc">Quiosc</option>
+                        @elseif ($reserva->tipusChecking == 'Mostrador')
+                            <option value="Online">Online</option>
+                            <option selected value="Mostrador">Mostrador</option>
+                            <option value="Quiosc">Quiosc</option>
+                        @elseif ($reserva->tipusChecking == 'Quiosc')
+                            <option value="Online">Online</option>
+                            <option value="Mostrador">Mostrador</option>
+                            <option selected value="Quiosc">Quiosc</option>
                         @endif
                     </select>
                 </div>
         </div>
-        <button type="submit" class="btn btn-block btn-danger">Modificar</button>
+        <button type="submit" class="btn btn-block btn-primary">Envia</button>
         </form>
     </div>
     <br><a href="{{ url('vols') }}">Accés directe a la Llista de vols</a>

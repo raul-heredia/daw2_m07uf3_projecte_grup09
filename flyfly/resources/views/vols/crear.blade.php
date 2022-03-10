@@ -56,9 +56,9 @@
                     <label for="classe">Classe</label>
                     <select class="form-select" name="classe" aria-label="A quina classe vitja">
                         <option selected disabled>Selecciona una opció</option>
-                        <option value="1" name="1">Turista</option>
-                        <option value="0" name="0">Bussiness</option>
-                        <option value="2" name="2">Primera</option>
+                        <option value="Turista">Turista</option>
+                        <option value="Bussiness">Bussiness</option>
+                        <option value="Primera">Primera</option>
                     </select>
                 </div>
         </div>

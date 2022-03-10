@@ -4,7 +4,12 @@
 
     <head>
         <meta charset="utf-8">
+        <style>
+            .container {
+                max-width: 85% !important;
+            }
 
+        </style>
     </head>
 
 
@@ -21,7 +26,9 @@
                     <td>Codi Vol</td>
                     <td>Codi Avió</td>
                     <td>Ciutat d'Origen</td>
+                    <td>Terminal d'Origen</td>
                     <td>Ciutat de Destinació</td>
+                    <td>Terminal de Destinació</td>
                     <td>Data Sortida</td>
                     <td>Data Arribada</td>
                     <td>Classe</td>
@@ -34,7 +41,9 @@
                         <td>{{ $flight->codiVol }}</td>
                         <td>{{ $flight->codiAvio }}</td>
                         <td>{{ $flight->ciutatOrigen }}</td>
+                        <td>{{ $flight->terminalOrigen }}</td>
                         <td>{{ $flight->ciutatDestinacio }}</td>
+                        <td>{{ $flight->terminalDestinacio }}</td>
                         <td>{{ $flight->dataSortida }}</td>
                         <td>{{ $flight->dataArribada }}</td>
                         <td>{{ $flight->classe }}</td>

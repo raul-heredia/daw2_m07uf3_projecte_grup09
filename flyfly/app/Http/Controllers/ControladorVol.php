@@ -48,7 +48,7 @@ class ControladorVol extends Controller
             'classe' => 'required|max:255',
         ]);
         $vol = Vol::create($nouVol);
-        return redirect('/nouVols')->with('completed', 'Vol creat!');
+        return redirect('/vols')->with('completed', 'Vol creat!');
     }
 
     /**

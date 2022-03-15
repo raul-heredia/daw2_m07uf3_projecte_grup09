@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <style>
             .container {
-                max-width: 90% !important;
+                max-width: 95% !important;
             }
 
         </style>

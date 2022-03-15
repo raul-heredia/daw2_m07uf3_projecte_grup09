@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('usuaris/login');
 });
 Route::resource('usuaris', ControladorUsuari::class);
 Route::resource('clients', ControladorClient::class);
 Route::resource('vols', ControladorVol::class);
 Route::resource('reservas', ControladorReserva::class);
+Route::post('/login', 'ControladorUsuari@login')->name('login');

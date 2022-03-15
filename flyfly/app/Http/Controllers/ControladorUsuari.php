@@ -101,4 +101,10 @@ class ControladorUsuari extends Controller
         $usuari->delete();
         return redirect('/usuaris')->with('completed', 'Usuari esborrat');
     }
+    public function login()
+    {
+        echo "foo";
+        //$usuari = Usuari::findOrFail();
+        //echo $usuari;
+    }
 }

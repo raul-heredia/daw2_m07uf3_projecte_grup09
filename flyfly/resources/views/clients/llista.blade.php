@@ -56,6 +56,8 @@
                         <td>{{ $cli->tipusTarjeta }}</td>
                         <td>{{ $cli->numTarjeta }}</td>
                         <td class="text-left">
+                            <a href="{{ route('clients.show', $cli->passaportClient) }}"
+                                class="btn btn-secondary btn-sm">PDF</a>
                             <a href="{{ route('clients.edit', $cli->passaportClient) }}"
                                 class="btn btn-success btn-sm">Edita</a>
                             <form action="{{ route('clients.destroy', $cli->passaportClient) }}" method="post"

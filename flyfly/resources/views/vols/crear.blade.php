@@ -46,11 +46,19 @@
                 </div>
                 <div class="form-group">
                     <label for="dataSortida">Data sortida</label>
-                    <input type="text" class="form-control" name="dataSortida" />
+                    <input type="date" class="form-control" name="dataSortida" />
+                </div>
+                <div class="form-group">
+                    <label for="horaSortida">Hora Sortida</label>
+                    <input type="time" class="form-control" name="horaSortida" />
                 </div>
                 <div class="form-group">
                     <label for="dataArribada">Data arribada</label>
-                    <input type="text" class="form-control" name="dataArribada" />
+                    <input type="date" class="form-control" name="dataArribada" />
+                </div>
+                <div class="form-group">
+                    <label for="horaArribada">Hora arribada</label>
+                    <input type="time" class="form-control" name="horaArribada" />
                 </div>
                 <div class="form-group">
                     <label for="classe">Classe</label>

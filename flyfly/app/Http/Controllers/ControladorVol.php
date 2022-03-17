@@ -44,9 +44,15 @@ class ControladorVol extends Controller
             'terminalOrigen' => 'required|max:255',
             'terminalDestinacio' => 'required|max:255',
             'dataSortida' => 'required|max:255',
+            'horaSortida' => 'required|max:255',
             'dataArribada' => 'required|max:255',
+            'horaArribada' => 'required|max:255',
             'classe' => 'required|max:255',
         ]);
+        $dataSortida = $request->dataSortida . " " . $request->horaSortida;
+        $dataArribada = $request->dataArribada . " " . $request->horaArribada;
+        $vol['dataSortida'] = $dataSortida;
+        $vol['dataArribada'] = $dataArribada;
         $vol = Vol::create($nouVol);
         return redirect('/vols')->with('completed', 'Vol creat!');
     }

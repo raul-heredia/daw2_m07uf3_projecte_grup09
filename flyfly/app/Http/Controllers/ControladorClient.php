@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
-
+use PDF;
+use App;
+use Datetime;
 class ControladorClient extends Controller
 {
     /**
@@ -61,7 +63,36 @@ class ControladorClient extends Controller
      */
     public function show($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $dataNaix = new DateTime($client->edat);
+        $avui = new DateTime(date('Y-m-d'));
+        $edat = $avui->diff($dataNaix);
+        $HTML = "
+        <style>
+        *{
+            font-size: 18px;
+        }
+        span{
+            color: #1565c0;
+            font-weight: bold;
+        }
+        </style>
+        <span>Passaport:</span> $client->passaportClient <br/>
+        <span>Nom:</span> $client->nom <br/>
+        <span>Cognoms:</span> $client->cognoms <br/>
+        <span>Data de Naixament:</span> $client->edat <br/>
+        <span>Edat:</span> $edat->y <br/>
+        <span>Telèfon:</span> $client->telefon <br/>
+        <span>Email:</span> $client->email <br/>
+        <span>Direcció:</span> $client->direccio <br/>
+        <span>Ciutat:</span> $client->ciutat <br/>
+        <span>País:</span> $client->pais <br/>
+        <span>Tipus de Tarjeta:</span> $client->tipusTarjeta <br/>
+        <span>Nº de Tarjeta:</span> $client->numTarjeta <br/>
+        ";
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($HTML);
+        return $pdf->stream();
     }
 
     /**

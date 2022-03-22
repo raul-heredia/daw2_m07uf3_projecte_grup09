@@ -1,6 +1,9 @@
 @extends('disseny')
 
 @section('content')
+    <?php
+    session_start();
+    ?>
     <div class="card mt-5">
         <div class="card-header">
             Actualització de dades
@@ -26,11 +29,11 @@
                 </div>
                 <div class="form-group">
                     <label for="codiVol">Codi Vol</label>
-                    <input type="text" class="form-control" name="codiVol" value="{{ $reserva->codiVol }}"/>
+                    <input type="text" class="form-control" name="codiVol" value="{{ $reserva->codiVol }}" />
                 </div>
                 <div class="form-group">
                     <label for="numeroSeient">Número de Seient</label>
-                    <input type="number" class="form-control" name="numeroSeient" value="{{ $reserva->numeroSeient }}"/>
+                    <input type="number" class="form-control" name="numeroSeient" value="{{ $reserva->numeroSeient }}" />
                 </div>
                 <div class="form-group">
                     <label for="isEquipatgeMa">Equipatge de Mà</label>
@@ -60,7 +63,8 @@
                 </div>
                 <div class="form-group">
                     <label for="quantitatEquipatgesFacturats">Quantitat Equipatges Facturats</label>
-                    <input type="number" class="form-control" name="quantitatEquipatgesFacturats" value="{{ $reserva->quantitatEquipatgesFacturats }}"/>
+                    <input type="number" class="form-control" name="quantitatEquipatgesFacturats"
+                        value="{{ $reserva->quantitatEquipatgesFacturats }}" />
                 </div>
                 <div class="form-group">
                     <label for="tipusAsseguranca">Tipus Assegurança</label>
@@ -83,7 +87,7 @@
                 </div>
                 <div class="form-group">
                     <label for="preuVol">Preu del Vol</label>
-                    <input type="number" class="form-control" name="preuVol" value="{{ $reserva->preuVol }}"/>
+                    <input type="number" class="form-control" name="preuVol" value="{{ $reserva->preuVol }}" />
                 </div>
                 <div class="form-group">
                     <label for="tipusChecking">Tipus de Checking</label>

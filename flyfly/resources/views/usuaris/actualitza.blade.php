@@ -1,6 +1,15 @@
 @extends('disseny')
 
 @section('content')
+    <?php
+session_start();
+if (!isset($_SESSION['administrador'])) {
+    ?>
+    <h2>Error, no tens accés a aquesta vista.</h2>
+    <br><a href="{{ url('inici') }}\">Tornar A Inici</a>
+    <?php    
+}else{
+?>
     <div class="card mt-5">
         <div class="card-header">
             Actualització de dades
@@ -49,4 +58,8 @@
             </form>
         </div>
     </div>
-<br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a @endsection
+    <br><a href="{{ url('usuaris') }}">Accés directe a la Llista d'usuaris</a>
+    <?php
+}
+?>
+@endsection

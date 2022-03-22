@@ -1,7 +1,9 @@
 @extends('disseny')
 
 @section('content')
-
+    <?php
+    session_start();
+    ?>
     <h1>Afegir un nou Client</h1>
     <div class="card mt-5">
         <div class="card-header">

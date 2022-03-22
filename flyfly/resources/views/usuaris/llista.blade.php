@@ -63,10 +63,7 @@ if (!isset($_SESSION['administrador'])) {
         </table>
         <div>
             <br><a href="{{ url('usuaris/create') }}">Accés directe a la vista de creació d'usuaris</a>
-
-
-            {{-- Bootstrap JS --}}
-        @endsection
-        <?php
+            <?php
 }
 ?>
+        @endsection

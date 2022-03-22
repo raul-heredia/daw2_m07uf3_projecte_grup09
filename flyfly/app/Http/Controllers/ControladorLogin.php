@@ -1,18 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 class ControladorLogin extends Controller
 {
- /**
- * Handle an authentication attempt.
- *
- * @param \Illuminate\Http\Request $peticio
- * @return \Illuminate\Http\Response
- */
- public function autentica(Request $peticio){
+    /**
+     * Handle an authentication attempt.
+     *
+     * @param \Illuminate\Http\Request $peticio
+     * @return \Illuminate\Http\Response
+     */
+    public function autentica(Request $peticio){
  $credencials = $peticio->validate([
     'email' => ['required', 'email'],
     'password' => ['required'],
@@ -27,6 +26,7 @@ class ControladorLogin extends Controller
     } else{
         $_SESSION['usuari'] = $email;
     }
+    date_default_timezone_set('Europe/Madrid');
     User::where('email', $email)->update(array('horaEntrada' => now()));   
     return redirect()->route('inici.index');
  }
@@ -36,6 +36,7 @@ class ControladorLogin extends Controller
  }
  public function tancar(){
     session_start();
+    date_default_timezone_set('Europe/Madrid');
     if(isset($_SESSION["usuari"])){
         User::where('email', $_SESSION["usuari"])->update(array('horaSortida' => now()));   
     }else if(isset($_SESSION["administrador"])){

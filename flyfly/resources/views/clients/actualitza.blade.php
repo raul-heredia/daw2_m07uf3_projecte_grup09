@@ -1,6 +1,9 @@
 @extends('disseny')
 
 @section('content')
+    <?php
+    session_start();
+    ?>
     <div class="card mt-5">
         <div class="card-header">
             Actualització de dades

@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <style>
             .container {
-                max-width: 95% !important;
+                max-width: 100% !important;
             }
 
         </style>
@@ -48,6 +48,7 @@
                         <td>{{ $flight->dataArribada }}</td>
                         <td>{{ $flight->classe }}</td>
                         <td class="text-left">
+                            <a href="{{ route('vols.show', $flight->codiVol) }}" class="btn btn-secondary btn-sm">PDF</a>
                             <a href="{{ route('vols.edit', $flight->codiVol) }}" class="btn btn-success btn-sm">Edita</a>
                             <form action="{{ route('vols.destroy', $flight->codiVol) }}" method="post"
                                 style="display: inline-block">

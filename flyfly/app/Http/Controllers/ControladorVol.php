@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vol;
-
+use PDF;
+use App;
 class ControladorVol extends Controller
 {
     /**
@@ -51,8 +52,8 @@ class ControladorVol extends Controller
         ]);
         $dataSortida = $request->dataSortida . " " . $request->horaSortida;
         $dataArribada = $request->dataArribada . " " . $request->horaArribada;
-        $vol['dataSortida'] = $dataSortida;
-        $vol['dataArribada'] = $dataArribada;
+        $nouVol["dataSortida"] = $dataSortida;
+        $nouVol["dataArribada"] = $dataArribada;
         $vol = Vol::create($nouVol);
         return redirect('/vols')->with('completed', 'Vol creat!');
     }
@@ -65,7 +66,31 @@ class ControladorVol extends Controller
      */
     public function show($id)
     {
-        //
+        $vol = Vol::findOrFail($id);
+        $HTML = "
+        <style>
+        *{
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+        }
+        span{
+            color: #1565c0;
+            font-weight: bold;
+        }
+        </style>
+        <span>Codi Vol:</span> $vol->codiVol <br/>
+        <span>Codi Avió:</span> $vol->codiAvio <br/>
+        <span>Ciutat d'Origen:</span> $vol->ciutatOrigen <br/>
+        <span>Terminal d'Origen:</span> $vol->terminalOrigen <br/>
+        <span>Ciutat de Destinació:</span> $vol->ciutatDestinacio <br/>
+        <span>Terminal de Destinació</span> $vol->terminalDestinacio <br/>
+        <span>Data sortida:</span> $vol->dataSortida <br/>
+        <span>Data arribada</span> $vol->dataArribada <br/>
+        <span>Classe</span> $vol->classe <br/>
+        ";
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($HTML);
+        return $pdf->stream();
     }
 
     /**

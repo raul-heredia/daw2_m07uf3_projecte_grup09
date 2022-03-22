@@ -70,6 +70,7 @@ class ControladorClient extends Controller
         $HTML = "
         <style>
         *{
+            font-family: 'Nunito', sans-serif;
             font-size: 18px;
         }
         span{
@@ -78,8 +79,7 @@ class ControladorClient extends Controller
         }
         </style>
         <span>Passaport:</span> $client->passaportClient <br/>
-        <span>Nom:</span> $client->nom <br/>
-        <span>Cognoms:</span> $client->cognoms <br/>
+        <span>Nom Complet:</span> $client->nom $client->cognoms<br/>
         <span>Data de Naixament:</span> $client->edat <br/>
         <span>Edat:</span> $edat->y <br/>
         <span>Telèfon:</span> $client->telefon <br/>

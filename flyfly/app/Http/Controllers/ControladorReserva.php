@@ -65,7 +65,40 @@ class ControladorReserva extends Controller
      */
     public function show($id)
     {
-        //
+        $reserva = Reserva::where('passaportClient', '=', $id)->first();
+        var_dump($reserva);
+        /* $EquipatgeMa = "No";
+        if($reserva->isEquipatgeMa == 1){
+            $EquipatgeMa = "Sí";
+        }
+        $EquipatgeCabina = "No";
+        if($reserva->isEquipatgeCabinaMenor20 == 1){
+            $EquipatgeCabina = "Sí";
+        }
+        $HTML = "
+        <style>
+        *{
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+        }
+        span{
+            color: #1565c0;
+            font-weight: bold;
+        }
+        </style>
+        <span>Passaport Client:</span> $reserva->passaportClient <br/>
+        <span>Codi Vol:</span> $reserva->codiVol <br/>
+        <span>Número de Seient:</span> $reserva->numeroSeient <br/>
+        <span>Equipatge de mà:</span> $EquipatgeMa <br/>
+        <span>Equipatge de Cabina menys 20kg:</span> $EquipatgeCabina <br/>
+        <span>Quantitat d'equipatges Facturats:</span> $reserva->quantitatEquipatgesFacturats <br/>
+        <span>Tipus d'Assegurança:</span> $reserva->tipusAsseguranca <br/>
+        <span>Preu Vol:</span> $reservaol->preuVol <br/>
+        <span>Tipus de Checking:</span> $reserva->tipusChecking <br/>
+        ";
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($HTML);
+        return $pdf->stream(); */
     }
 
     /**

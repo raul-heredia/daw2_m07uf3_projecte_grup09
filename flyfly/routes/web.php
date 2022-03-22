@@ -20,4 +20,6 @@ Route::resource('usuaris', ControladorUsuari::class);
 Route::resource('clients', ControladorClient::class);
 Route::resource('vols', ControladorVol::class);
 Route::resource('reservas', ControladorReserva::class);
-Route::post('/login', 'ControladorUsuari@login')->name('login');
+Route::resource('inici', ControladorInici::class);
+Route::get('/autentica','ControladorLogin@autentica')->name('autenticacio');
+Route::get('/tancar','ControladorLogin@tancar')->name('tancar');

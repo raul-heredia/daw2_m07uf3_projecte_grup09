@@ -37,13 +37,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"></span></a>
+                    @if (isset($_SESSION['administrador']) || isset($_SESSION['usuari']))
+                        <a class="nav-link active" href="{{ url('/tancar') }}"><i class="bi bi-power"></i> Tancar
+                            Sessió</a>
+                    @endif
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
-        @yield('content')
+        @if (isset($_SESSION['administrador']) || isset($_SESSION['usuari']))
+            @yield('content')
+        @else
+            <h2>Error, Has d'iniciar sessió.</h2>
+            <br><a href="{{ url('/') }}">Iniciar Sessió</a>
+        @endif
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">

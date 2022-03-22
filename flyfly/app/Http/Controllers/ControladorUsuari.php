@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuari;
-
+use App\Models\User;
+use PDF;
+use App;
 class ControladorUsuari extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class ControladorUsuari extends Controller
      */
     public function index()
     {
-        $usuari = Usuari::all();
+        $usuari = User::all();
         return view('usuaris/llista', compact('usuari'));
     }
 
@@ -44,7 +45,7 @@ class ControladorUsuari extends Controller
             'isCapDepartament' => 'required|max:255',
         ]);
         $nouUsuari["password"] = password_hash($nouUsuari["password"], PASSWORD_DEFAULT);
-        $usuari = Usuari::create($nouUsuari);
+        $usuari = User::create($nouUsuari);
         return redirect('/usuaris')->with('completed', 'Usuari creat!');
     }
 
@@ -56,6 +57,31 @@ class ControladorUsuari extends Controller
      */
     public function show($id)
     {
+        $usuari = User::findOrFail($id);
+        $isAdmin = "No";
+        if($usuari->isCapDepartament == 1){
+            $isAdmin = "Sí";
+        }
+        $HTML = "
+        <style>
+        *{
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+        }
+        span{
+            color: #1565c0;
+            font-weight: bold;
+        }
+        </style>
+        <span>Nom Complet:</span> $usuari->nom $usuari->cognoms <br/>
+        <span>Email:</span> $usuari->email <br/>
+        <span>Es cap de departament?:</span> $isAdmin <br/>
+        <span>Hora Entrada:</span> $usuari->horaEntrada <br/>
+        <span>Hora Sortida:</span> $usuari->horaSortida <br/>
+        ";
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML($HTML);
+        return $pdf->stream();
     }
 
     /**
@@ -66,7 +92,7 @@ class ControladorUsuari extends Controller
      */
     public function edit($id)
     {
-        $usuari = Usuari::findOrFail($id);
+        $usuari = User::findOrFail($id);
         return view('usuaris/actualitza', compact('usuari'));
     }
 
@@ -85,7 +111,7 @@ class ControladorUsuari extends Controller
             'email' => 'required|max:255',
             'isCapDepartament' => 'required|max:255',
         ]);
-        Usuari::where('email', $id)->update($dades);
+        User::where('email', $id)->update($dades);
         return redirect('/usuaris')->with('completed', 'Usuari actualitzat');
     }
 
@@ -97,14 +123,14 @@ class ControladorUsuari extends Controller
      */
     public function destroy($id)
     {
-        $usuari = Usuari::findOrFail($id);
+        $usuari = User::findOrFail($id);
         $usuari->delete();
         return redirect('/usuaris')->with('completed', 'Usuari esborrat');
     }
     public function login()
     {
         echo "foo";
-        //$usuari = Usuari::findOrFail();
+        //$usuari = User::findOrFail();
         //echo $usuari;
     }
 }

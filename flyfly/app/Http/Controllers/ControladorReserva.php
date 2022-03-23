@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserva;
-
+use PDF;
+use App;
 class ControladorReserva extends Controller
 {
     /**
@@ -65,9 +66,11 @@ class ControladorReserva extends Controller
      */
     public function show($id)
     {
-        $reserva = Reserva::where('passaportClient', '=', $id)->first();
-        var_dump($reserva);
-        /* $EquipatgeMa = "No";
+        $id = json_decode($id);
+        $passaportClient = $id[0];
+        $codiVol = $id[1];
+        $reserva = Reserva::where('passaportClient', '=', $passaportClient)->where('codiVol', '=', $codiVol)->first();
+        $EquipatgeMa = "No";
         if($reserva->isEquipatgeMa == 1){
             $EquipatgeMa = "Sí";
         }
@@ -93,12 +96,12 @@ class ControladorReserva extends Controller
         <span>Equipatge de Cabina menys 20kg:</span> $EquipatgeCabina <br/>
         <span>Quantitat d'equipatges Facturats:</span> $reserva->quantitatEquipatgesFacturats <br/>
         <span>Tipus d'Assegurança:</span> $reserva->tipusAsseguranca <br/>
-        <span>Preu Vol:</span> $reservaol->preuVol <br/>
+        <span>Preu Vol:</span> $reserva->preuVol <br/>
         <span>Tipus de Checking:</span> $reserva->tipusChecking <br/>
         ";
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($HTML);
-        return $pdf->stream(); */
+        return $pdf->stream();
     }
 
     /**
@@ -109,7 +112,10 @@ class ControladorReserva extends Controller
      */
     public function edit($id)
     {
-        $reserva = Reserva::findOrFail($id);
+        $id = json_decode($id);
+        $passaportClient = $id[0];
+        $codiVol = $id[1];
+        $reserva = Reserva::where('passaportClient', '=', $passaportClient)->where('codiVol', '=', $codiVol)->first();
         return view('reservas/actualitza', compact('reserva'));
     }
 
@@ -120,12 +126,12 @@ class ControladorReserva extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, $id2)
+    public function update(Request $request, $id)
     {
         $dades = $request->validate([
-            'passaportClient' => 'required|max:6',
-            'codiVol' => 'required|max:255',
-            'localitzadorReserva' => 'required|max:255',
+            'passaportClient' => 'max:9',
+            'codiVol' => 'max:6',
+            'localitzadorReserva' => 'max:255',
             'numeroSeient' => 'required|max:255',
             'isEquipatgeMa' => 'required|max:255',
             'isEquipatgeCabinaMenor20' => 'required|max:255',
@@ -135,12 +141,11 @@ class ControladorReserva extends Controller
             'tipusChecking' => 'required|max:255',
         ]);
         //
-
-
-
-
-        Reserva::where('codiVol', $id)->update($dades);
-        //return redirect('/reservas')->with('completed', 'Reserva actualitzada');
+        $id = json_decode($id);
+        $passaportClient = $id[0];
+        $codiVol = $id[1];
+        Reserva::where('passaportClient', '=', $passaportClient)->where('codiVol', '=', $codiVol)->update($dades);
+        return redirect('/reservas')->with('completed', 'Reserva actualitzada');
     }
 
     /**
@@ -151,6 +156,10 @@ class ControladorReserva extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = json_decode($id);
+        $passaportClient = $id[0];
+        $codiVol = $id[1];
+        Reserva::where('passaportClient', '=', $passaportClient)->where('codiVol', '=', $codiVol)->delete();
+        return redirect('/reservas')->with('completed', 'Reserva esborrada');
     }
 }

@@ -73,11 +73,12 @@
                         <td>{{ $rsv->preuVol }}€</td>
                         <td>{{ $rsv->tipusChecking }}</td>
                         <td class="text-left">
-                            <a href="{{ route('reservas.show', $rsv->passaportClient) }}"
-                                class="btn btn-secondary btn-sm">PDF</a>
-                            <a href="{{ route('reservas.edit', $rsv->passaportClient) }}"
-                                class="btn btn-success btn-sm">Edita</a>
-                            <form action="{{ route('reservas.destroy', $rsv->passaportClient) }}" method="post"
+                            <?php $arr = [$rsv->passaportClient, $rsv->codiVol];
+                            $claus = json_encode($arr);
+                            ?>
+                            <a href="{{ route('reservas.show', $claus) }}" class="btn btn-secondary btn-sm">PDF</a>
+                            <a href="{{ route('reservas.edit', $claus) }}" class="btn btn-success btn-sm">Edita</a>
+                            <form action="{{ route('reservas.destroy', $claus) }}" method="post"
                                 style="display: inline-block">
                                 @csrf
                                 @method('DELETE')

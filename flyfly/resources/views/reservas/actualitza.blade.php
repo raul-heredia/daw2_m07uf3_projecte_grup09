@@ -19,21 +19,30 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('reservas.update', $reserva->codiVol) }}">
+            <?php $arr = [$reserva->passaportClient, $reserva->codiVol];
+            $claus = json_encode($arr);
+            ?>
+            <form method="post" action="{{ route('reservas.update', $claus) }}">
                 <div class="form-group">
                     @csrf
                     @method('PATCH')
                     <label for="passaportClient">Passaport Client</label>
-                    <input type="text" class="form-control" name="passaportClient"
+                    <input disabled type="text" class="form-control" name="passaportClient"
                         value="{{ $reserva->passaportClient }}" />
                 </div>
                 <div class="form-group">
                     <label for="codiVol">Codi Vol</label>
-                    <input type="text" class="form-control" name="codiVol" value="{{ $reserva->codiVol }}" />
+                    <input disabled type="text" class="form-control" name="codiVol" value="{{ $reserva->codiVol }}" />
+                </div>
+                <div class="form-group">
+                    <label for="localitzadorReserva">Localitzador Reserva</label>
+                    <input disabled type="text" class="form-control" name="localitzadorReserva"
+                        value="{{ $reserva->localitzadorReserva }}" />
                 </div>
                 <div class="form-group">
                     <label for="numeroSeient">Número de Seient</label>
-                    <input type="number" class="form-control" name="numeroSeient" value="{{ $reserva->numeroSeient }}" />
+                    <input type="number" class="form-control" name="numeroSeient"
+                        value="{{ $reserva->numeroSeient }}" />
                 </div>
                 <div class="form-group">
                     <label for="isEquipatgeMa">Equipatge de Mà</label>

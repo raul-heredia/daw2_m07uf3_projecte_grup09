@@ -38,6 +38,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     @if (isset($_SESSION['administrador']) || isset($_SESSION['usuari']))
+                        <span class="nav-link active"><i class="bi bi-person-fill"></i>
+                            {{ isset($_SESSION['administrador']) ? $_SESSION['administrador'] : $_SESSION['usuari'] }}</span>
+                    @endif
+                </li>
+                <li class="nav-item active">
+                    @if (isset($_SESSION['administrador']) || isset($_SESSION['usuari']))
                         <a class="nav-link active" href="{{ url('/tancar') }}"><i class="bi bi-power"></i> Tancar
                             Sessió</a>
                     @endif

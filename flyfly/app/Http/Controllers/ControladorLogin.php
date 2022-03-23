@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Mail;
 class ControladorLogin extends Controller
 {
     /**
@@ -19,14 +20,20 @@ class ControladorLogin extends Controller
 
  if (Auth::attempt($credencials)) {
     $usuari = User::findOrFail($peticio->email);
+    date_default_timezone_set('Europe/Madrid');
     $email = $usuari["email"];
+    $ara = now();
     session_start();
     if($usuari["isCapDepartament"]){
         $_SESSION['administrador'] = $email;
     } else{
+        Mail::raw("L'usuari $email ha iniciat sessio a data: $ara", function ($message) {
+            $message->to("login.flyfly@gmail.com")
+              ->subject("Nou Inici de Sessió")
+              ->from("login.flyfly@gmail.com");
+          });
         $_SESSION['usuari'] = $email;
     }
-    date_default_timezone_set('Europe/Madrid');
     User::where('email', $email)->update(array('horaEntrada' => now()));   
     return redirect()->route('inici.index');
  }
@@ -38,6 +45,13 @@ class ControladorLogin extends Controller
     session_start();
     date_default_timezone_set('Europe/Madrid');
     if(isset($_SESSION["usuari"])){
+        $email = $_SESSION["usuari"];
+        $ara = now();
+        Mail::raw("L'usuari $email ha tancat sessio a data: $ara", function ($message) {
+            $message->to("login.flyfly@gmail.com")
+              ->subject("Ha Finalitzat la Sessió")
+              ->from("login.flyfly@gmail.com");
+          });
         User::where('email', $_SESSION["usuari"])->update(array('horaSortida' => now()));   
     }else if(isset($_SESSION["administrador"])){
         User::where('email', $_SESSION["administrador"])->update(array('horaSortida' => now()));   

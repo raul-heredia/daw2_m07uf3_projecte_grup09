@@ -27,11 +27,11 @@ class ControladorLogin extends Controller
     if($usuari["isCapDepartament"]){
         $_SESSION['administrador'] = $email;
     } else{
-        Mail::raw("L'usuari $email ha iniciat sessio a data: $ara", function ($message) {
+        /* Mail::raw("L'usuari $email ha iniciat sessio a data: $ara", function ($message) {
             $message->to("login.flyfly@gmail.com")
               ->subject("Nou Inici de Sessió")
               ->from("login.flyfly@gmail.com");
-          });
+          }); */
         $_SESSION['usuari'] = $email;
     }
     User::where('email', $email)->update(array('horaEntrada' => now()));   
@@ -47,11 +47,11 @@ class ControladorLogin extends Controller
     if(isset($_SESSION["usuari"])){
         $email = $_SESSION["usuari"];
         $ara = now();
-        Mail::raw("L'usuari $email ha tancat sessio a data: $ara", function ($message) {
+        /* Mail::raw("L'usuari $email ha tancat sessio a data: $ara", function ($message) {
             $message->to("login.flyfly@gmail.com")
               ->subject("Ha Finalitzat la Sessió")
               ->from("login.flyfly@gmail.com");
-          });
+          }); */
         User::where('email', $_SESSION["usuari"])->update(array('horaSortida' => now()));   
     }else if(isset($_SESSION["administrador"])){
         User::where('email', $_SESSION["administrador"])->update(array('horaSortida' => now()));   
